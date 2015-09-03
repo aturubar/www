@@ -69,10 +69,11 @@ $row['virtuemart_category_id'] . '"');
 echo '</categories>';
 echo '<cpa>1</cpa>';
 $offer_id_prefix = "SB";
+echo '<offers>';
 $items = $conn->query( $items_query );
 foreach( $items as $row ){
 $item_id = $row['virtuemart_product_id'];
-echo '<offer id="'.$offer_id_prefix. '-' . $item_id . '">';
+echo '<offer id="'. $offer_id_prefix . $item_id . '">';
 // get item category id and name
 $item_cat = $conn->query("SELECT * FROM $cat_table_name as c,$items_to_cats_table_name as cp WHERE cp.$field_virtuemart_product_id=$item_id AND c.$field_virtuemart_category_id=cp.$field_virtuemart_category_id" );
 foreach($item_cat as $cat){
@@ -101,6 +102,7 @@ insTagwithVal("description", $row['product_s_desc']);
 
 echo '</offer>';
 }
+echo '</offers>';
 echo '</shop>';
 echo '</yml_catalog>';
 
